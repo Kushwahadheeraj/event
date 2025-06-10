@@ -7,6 +7,8 @@ import EventCard from "@/components/EventCard";
 import EventForm from "@/components/EventForm";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import Search from "@/components/shared/Search";
+import CategoryFilter from "@/components/shared/CategoryFilter";
 import { useSession } from "next-auth/react";
 
 interface User {
@@ -51,14 +53,21 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       <Navbar setShowEventForm={setShowEventForm} />
       <HeroSection />
 
       {status === "authenticated" && (
-        <div className="min-h-screen bg-gray-100 p-8 pt-20">
+        <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+          <h2 className="h2-bold text-center text-gray-800 dark:text-white">Trust by <br className="md:hidden"/>Thousands of Events</h2>
+
+          <div className="flex w-full flex-col gap-5 md:flex-row">
+            <Search />
+            <CategoryFilter />
+          </div>
+
           {isLoading ? (
-            <div className="flex justify-center items-center h-full text-2xl">Loading events...</div>
+            <div className="flex justify-center items-center h-full text-2xl dark:text-gray-300">Loading events...</div>
           ) : error ? (
             <div className="text-center text-red-500 mt-8">Error loading events: {error.message}</div>
           ) : (
@@ -68,7 +77,7 @@ export default function Home() {
               ))}
             </div>
           )}
-        </div>
+        </section>
       )}
 
       {showEventForm && (
@@ -78,4 +87,4 @@ export default function Home() {
       )}
     </div>
   );
-} 
+}

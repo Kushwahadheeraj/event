@@ -2,31 +2,42 @@
 
 import React from 'react';
 import { signIn, useSession } from 'next-auth/react';
+import { Button } from '@/components/ui/button';
 
 export default function HeroSection() {
   const { status } = useSession();
 
   if (status === "authenticated") {
-    return null; // Don't show hero section if authenticated
+    return null;
   }
 
   return (
-    <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen flex items-center justify-center text-center px-4 sm:px-6 lg:px-8">
-      <div className="absolute inset-0"></div>
-      <div className="relative z-10 text-white">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
-          Welcome to Event Planner
-        </h1>
-        <p className="text-lg sm:text-xl lg:text-2xl mb-10 opacity-0 animate-fade-in delay-200">
-          Discover, create, and manage amazing events with ease.
-        </p>
-        <button
-          onClick={() => signIn("google")}
-          className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 opacity-0 animate-fade-in delay-400"
-        >
-          Get Started - Sign in with Google
-        </button>
+    <section className="bg-white py-20 md:py-32 lg:py-40 relative overflow-hidden dark:bg-gray-900">
+      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+          <h1 className="text-5xl lg:text-7xl font-extrabold leading-tight text-gray-900 dark:text-white mb-6">
+            Host, Connect, <br />Celebrate: Your <br />Events, Our <br />Platform!
+          </h1>
+          <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-md mx-auto lg:mx-0">
+            Book and learn helpful tips from 3,168+ mentors in world-class companies with our global community.
+          </p>
+          <Button
+            onClick={() => signIn("google")}
+            className="border border-gray-300 bg-white text-gray-700 font-bold py-2 px-4 rounded-md shadow-sm transition duration-300 hover:bg-gray-100"
+          >
+            Explore Now
+          </Button>
+        </div>
+        <div className="lg:w-1/2 flex flex-col justify-center lg:justify-end items-center lg:items-end space-y-2">
+          <p className="text-xl font-semibold text-gray-800 dark:text-white">Hero image</p>
+          <div className="flex flex-wrap gap-4 justify-center lg:justify-end">
+            <p className="text-gray-600 dark:text-gray-300">Top Left Image</p>
+            <p className="text-gray-600 dark:text-gray-300">Top Right Image</p>
+            <p className="text-gray-600 dark:text-gray-300">Bottom Left Image</p>
+            <p className="text-gray-600 dark:text-gray-300">Bottom Right Image</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 } 
