@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { PrismaClient } from "@prisma/client"
+
 import { authOptions } from "../auth/[...nextauth]/route"
+// import { PrismaClient } from './generated/prisma'
 
 const prisma = new PrismaClient()
+// use `prisma` in your application to read and write data in your DB
+
+// const prisma = new PrismaClient()
 
 export async function GET() {
   try {
