@@ -1,12 +1,23 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
 }
 
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  STAFF
+  EVENT_OWNER
+  ATTENDEE
+}
+
+// Add your models here
 model User {
   id        String    @id @default(uuid())
   email     String    @unique
@@ -31,9 +42,10 @@ model RSVP {
   id        String    @id @default(uuid())
   user      User      @relation(fields: [userId], references: [id])
   userId    String
-  event     Event     @relation(fields: [eventId], references: [id])
   eventId   String
   createdAt DateTime  @default(now())
 
   @@unique([userId, eventId])
-} 
+}
+
+// Add more models as needed 
