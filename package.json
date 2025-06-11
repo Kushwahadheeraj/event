@@ -55,7 +55,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "prisma": "^6.9.0",
-    "tailwindcss": "^4",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
 }
